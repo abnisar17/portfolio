@@ -109,10 +109,15 @@ const ContactSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-10"
         >
-          <span className="text-primary font-medium mb-4 block">GET IN TOUCH</span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mb-4">
+          <motion.span 
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary font-medium text-sm mb-4"
+            whileHover={{ scale: 1.05 }}
+          >
+            GET IN TOUCH
+          </motion.span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mb-3">
             Let's Work <span className="gradient-text">Together</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">

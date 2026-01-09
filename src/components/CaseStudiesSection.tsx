@@ -75,7 +75,7 @@ const CaseStudiesSection = () => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
 
   return (
-    <section id="case-studies" className="py-16 md:py-24 relative overflow-hidden">
+    <section id="case-studies" className="py-12 md:py-16 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-background" />
       <div className="orb orb-cyan w-72 h-72 -bottom-36 -left-36 opacity-10" />
@@ -87,10 +87,15 @@ const CaseStudiesSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-10"
         >
-          <span className="text-primary font-medium mb-4 block">SUCCESS STORIES</span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mb-4">
+          <motion.span 
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary font-medium text-sm mb-4"
+            whileHover={{ scale: 1.05 }}
+          >
+            SUCCESS STORIES
+          </motion.span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mb-3">
             Case <span className="gradient-text">Studies</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">

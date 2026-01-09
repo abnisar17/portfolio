@@ -67,7 +67,7 @@ const SkillsSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="skills" className="py-16 md:py-24 relative overflow-hidden">
+    <section id="skills" className="py-12 md:py-16 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-background" />
       <div className="orb orb-cyan w-96 h-96 -top-48 -left-48 opacity-10" />
@@ -79,10 +79,15 @@ const SkillsSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-10"
         >
-          <span className="text-primary font-medium mb-4 block">MY EXPERTISE</span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mb-4">
+          <motion.span 
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary font-medium text-sm mb-4"
+            whileHover={{ scale: 1.05 }}
+          >
+            MY EXPERTISE
+          </motion.span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mb-3">
             Technical <span className="gradient-text">Skills</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">

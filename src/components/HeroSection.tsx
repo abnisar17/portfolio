@@ -221,7 +221,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8 }}
-          className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mt-8 pb-8"
+          className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mt-12 mb-8"
         >
           {stats.map((stat, index) => (
             <motion.div
@@ -229,19 +229,19 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.9 + index * 0.1 }}
-              whileHover={{ scale: 1.03, y: -3 }}
-              className="stat-card group"
+              whileHover={{ scale: 1.02 }}
+              className="stat-card group cursor-pointer"
             >
-              <div className="flex items-center justify-center gap-3">
-                <motion.div
-                  animate={{ rotate: [0, 5, -5, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
-                >
-                  <stat.icon className="w-7 h-7 text-primary group-hover:scale-110 transition-transform" />
-                </motion.div>
+              <div className="relative z-10 flex items-center justify-center gap-4">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-primary/20 rounded-xl blur-xl group-hover:bg-primary/30 transition-all duration-500" />
+                  <div className="relative w-14 h-14 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 border border-primary/30 flex items-center justify-center group-hover:border-primary/50 transition-all duration-500">
+                    <stat.icon className="w-7 h-7 text-primary group-hover:scale-110 transition-transform duration-300" />
+                  </div>
+                </div>
                 <div className="text-left">
                   <div className="text-2xl sm:text-3xl font-bold gradient-text">{stat.value}</div>
-                  <div className="text-xs sm:text-sm text-muted-foreground">{stat.label}</div>
+                  <div className="text-xs sm:text-sm text-muted-foreground font-medium">{stat.label}</div>
                 </div>
               </div>
             </motion.div>

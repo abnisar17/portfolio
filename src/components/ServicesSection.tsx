@@ -60,7 +60,7 @@ const ServicesSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="services" className="section-padding relative overflow-hidden">
+    <section id="services" className="py-16 md:py-24 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/10 to-background" />
       <div className="orb orb-orange w-80 h-80 -top-40 -right-40 opacity-10" />
@@ -72,7 +72,7 @@ const ServicesSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <span className="text-primary font-medium mb-4 block">WHAT I OFFER</span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mb-4">
@@ -84,33 +84,36 @@ const ServicesSection = () => {
         </motion.div>
 
         {/* Services Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -10 }}
-              className="glass-card p-8 group"
+              whileHover={{ y: -10, scale: 1.02 }}
+              className="glass-card p-6 group"
             >
               {/* Icon */}
-              <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.color} p-4 mb-6 group-hover:scale-110 transition-transform duration-300`}>
+              <motion.div 
+                className={`w-14 h-14 rounded-xl bg-gradient-to-br ${service.color} p-3 mb-5 group-hover:scale-110 transition-transform duration-300`}
+                whileHover={{ rotate: 5 }}
+              >
                 <service.icon className="w-full h-full text-white" />
-              </div>
+              </motion.div>
 
               {/* Title */}
-              <h3 className="font-display font-semibold text-xl mb-3 group-hover:text-primary transition-colors">
+              <h3 className="font-display font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
                 {service.title}
               </h3>
 
               {/* Description */}
-              <p className="text-muted-foreground text-sm mb-6">
+              <p className="text-muted-foreground text-sm mb-4">
                 {service.description}
               </p>
 
               {/* Features */}
-              <ul className="space-y-2 mb-6">
+              <ul className="space-y-2">
                 {service.features.map((feature) => (
                   <li key={feature} className="flex items-center gap-2 text-sm text-muted-foreground">
                     <div className="w-1.5 h-1.5 rounded-full bg-primary" />
@@ -118,15 +121,6 @@ const ServicesSection = () => {
                   </li>
                 ))}
               </ul>
-
-              {/* Learn More */}
-              <motion.button
-                whileHover={{ x: 5 }}
-                className="flex items-center gap-2 text-primary text-sm font-medium"
-              >
-                Learn More
-                <ArrowRight className="w-4 h-4" />
-              </motion.button>
             </motion.div>
           ))}
         </div>
@@ -136,9 +130,9 @@ const ServicesSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-center mt-16"
+          className="text-center mt-12"
         >
-          <p className="text-muted-foreground mb-6">
+          <p className="text-muted-foreground mb-4">
             Need something custom? Let's discuss your specific requirements.
           </p>
           <motion.a

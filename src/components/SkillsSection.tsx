@@ -67,7 +67,7 @@ const SkillsSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="skills" className="section-padding relative overflow-hidden">
+    <section id="skills" className="py-16 md:py-24 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-background" />
       <div className="orb orb-cyan w-96 h-96 -top-48 -left-48 opacity-10" />

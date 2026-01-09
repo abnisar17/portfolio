@@ -1,6 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { TrendingUp, Clock, Users, CheckCircle, ChevronDown, ChevronUp } from 'lucide-react';
+import { TrendingUp, CheckCircle, ChevronDown, ChevronUp, ExternalLink } from 'lucide-react';
 
 const caseStudies = [
   {
@@ -17,6 +17,7 @@ const caseStudies = [
       { metric: '<24h', label: 'Support Resolution', description: 'Down from 3-5 days' },
     ],
     tags: ['GoHighLevel', 'Workflow Automation', 'Booking Systems', 'CRM'],
+    caseStudyLink: '#',
   },
   {
     title: 'Kerzie Consulting - AI Course Launch',
@@ -32,6 +33,7 @@ const caseStudies = [
       { metric: '2 Days', label: 'Live Sessions', description: 'Automated registration' },
     ],
     tags: ['Sales Funnel', 'Payment Integration', 'Email Automation', 'Course Platform'],
+    caseStudyLink: '#',
   },
   {
     title: 'Enterprise Voice AI Implementation',
@@ -47,6 +49,7 @@ const caseStudies = [
       { metric: 'Real-time', label: 'CRM Updates', description: 'Instant lead qualification' },
     ],
     tags: ['VAPI', 'AI Voice Agents', 'CRM Integration', 'Lead Qualification'],
+    caseStudyLink: '#',
   },
   {
     title: 'Multi-CRM Platform Integration',
@@ -62,6 +65,7 @@ const caseStudies = [
       { metric: '1 View', label: 'Unified Dashboard', description: 'Complete visibility' },
     ],
     tags: ['API Integration', 'Data Sync', 'Python', 'Webhooks'],
+    caseStudyLink: '#',
   },
 ];
 
@@ -71,7 +75,7 @@ const CaseStudiesSection = () => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
 
   return (
-    <section id="case-studies" className="section-padding relative overflow-hidden">
+    <section id="case-studies" className="py-16 md:py-24 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-background" />
       <div className="orb orb-cyan w-72 h-72 -bottom-36 -left-36 opacity-10" />
@@ -83,7 +87,7 @@ const CaseStudiesSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <span className="text-primary font-medium mb-4 block">SUCCESS STORIES</span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mb-4">
@@ -95,7 +99,7 @@ const CaseStudiesSection = () => {
         </motion.div>
 
         {/* Case Studies Accordion */}
-        <div className="space-y-6 max-w-4xl mx-auto">
+        <div className="space-y-4 max-w-4xl mx-auto">
           {caseStudies.map((study, index) => (
             <motion.div
               key={study.title}
@@ -107,7 +111,7 @@ const CaseStudiesSection = () => {
               {/* Header */}
               <button
                 onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
-                className="w-full p-6 flex items-center justify-between text-left hover:bg-secondary/20 transition-colors"
+                className="w-full p-5 flex items-center justify-between text-left hover:bg-secondary/20 transition-colors"
               >
                 <div>
                   <div className="flex items-center gap-3 mb-2">
@@ -116,15 +120,20 @@ const CaseStudiesSection = () => {
                     </span>
                     <span className="text-xs text-muted-foreground">{study.duration}</span>
                   </div>
-                  <h3 className="font-display font-semibold text-lg md:text-xl">
+                  <h3 className="font-display font-semibold text-base md:text-lg">
                     {study.title}
                   </h3>
                 </div>
-                {expandedIndex === index ? (
-                  <ChevronUp className="w-6 h-6 text-primary flex-shrink-0" />
-                ) : (
-                  <ChevronDown className="w-6 h-6 text-muted-foreground flex-shrink-0" />
-                )}
+                <motion.div
+                  animate={{ rotate: expandedIndex === index ? 180 : 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {expandedIndex === index ? (
+                    <ChevronUp className="w-6 h-6 text-primary flex-shrink-0" />
+                  ) : (
+                    <ChevronDown className="w-6 h-6 text-muted-foreground flex-shrink-0" />
+                  )}
+                </motion.div>
               </button>
 
               {/* Expandable Content */}
@@ -137,9 +146,9 @@ const CaseStudiesSection = () => {
                 transition={{ duration: 0.3 }}
                 className="overflow-hidden"
               >
-                <div className="px-6 pb-6 space-y-6">
+                <div className="px-5 pb-5 space-y-5">
                   {/* Problem & Solution */}
-                  <div className="grid md:grid-cols-2 gap-6">
+                  <div className="grid md:grid-cols-2 gap-4">
                     <div className="p-4 rounded-xl bg-destructive/10 border border-destructive/20">
                       <h4 className="font-semibold text-sm text-destructive mb-2 flex items-center gap-2">
                         <span className="w-2 h-2 rounded-full bg-destructive" />
@@ -158,40 +167,54 @@ const CaseStudiesSection = () => {
 
                   {/* Results Grid */}
                   <div>
-                    <h4 className="font-semibold mb-4 flex items-center gap-2">
+                    <h4 className="font-semibold mb-3 flex items-center gap-2">
                       <TrendingUp className="w-5 h-5 text-primary" />
                       Key Results
                     </h4>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                       {study.results.map((result) => (
-                        <div
+                        <motion.div
                           key={result.label}
-                          className="p-4 rounded-xl bg-secondary/30 text-center"
+                          whileHover={{ scale: 1.05 }}
+                          className="p-3 rounded-xl bg-secondary/30 text-center"
                         >
-                          <div className="text-2xl font-bold gradient-text mb-1">
+                          <div className="text-xl sm:text-2xl font-bold gradient-text mb-1">
                             {result.metric}
                           </div>
-                          <div className="text-sm font-medium text-foreground mb-1">
+                          <div className="text-xs font-medium text-foreground mb-0.5">
                             {result.label}
                           </div>
-                          <div className="text-xs text-muted-foreground">
+                          <div className="text-[10px] text-muted-foreground">
                             {result.description}
                           </div>
-                        </div>
+                        </motion.div>
                       ))}
                     </div>
                   </div>
 
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2">
-                    {study.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-3 py-1 text-xs rounded-full bg-secondary/50 text-muted-foreground"
-                      >
-                        {tag}
-                      </span>
-                    ))}
+                  {/* Tags & CTA */}
+                  <div className="flex flex-wrap items-center justify-between gap-4">
+                    <div className="flex flex-wrap gap-2">
+                      {study.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-3 py-1 text-xs rounded-full bg-secondary/50 text-muted-foreground"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <motion.a
+                      href={study.caseStudyLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="btn-primary text-sm px-4 py-2 flex items-center gap-2"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                      Read Full Case Study
+                    </motion.a>
                   </div>
                 </div>
               </motion.div>

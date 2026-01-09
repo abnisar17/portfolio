@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Download, Sparkles, Zap, Users, CheckCircle } from 'lucide-react';
+import { ArrowRight, Sparkles, Zap, Users, CheckCircle, Calendar } from 'lucide-react';
 import profilePhoto from '@/assets/profile-photo.png';
 
 const stats = [
@@ -8,14 +8,17 @@ const stats = [
   { value: '100%', label: 'Success Rate', icon: CheckCircle },
 ];
 
-const HeroSection = () => {
-  const scrollToSection = (href: string) => {
-    const element = document.getElementById(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+// Technology logos for the rotating ring
+const technologies = [
+  { name: 'GoHighLevel', abbr: 'GHL', color: 'from-cyan-400 to-blue-500' },
+  { name: 'Make', abbr: 'Make', color: 'from-purple-400 to-purple-600' },
+  { name: 'Zapier', abbr: 'Zap', color: 'from-orange-400 to-orange-600' },
+  { name: 'n8n', abbr: 'n8n', color: 'from-red-400 to-pink-500' },
+  { name: 'Python', abbr: 'Py', color: 'from-yellow-400 to-yellow-600' },
+  { name: 'VAPI', abbr: 'VAPI', color: 'from-green-400 to-emerald-500' },
+];
 
+const HeroSection = () => {
   return (
     <section
       id="home"
@@ -29,9 +32,33 @@ const HeroSection = () => {
       <div className="orb orb-purple w-80 h-80 -bottom-40 -left-40 animate-float" style={{ animationDelay: '2s' }} />
       <div className="orb orb-orange w-64 h-64 top-1/2 right-1/4 animate-float" style={{ animationDelay: '4s' }} />
 
+      {/* Animated particles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-primary/50 rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [-20, 20, -20],
+              opacity: [0.2, 1, 0.2],
+              scale: [1, 1.5, 1],
+            }}
+            transition={{
+              duration: 3 + Math.random() * 2,
+              repeat: Infinity,
+              delay: Math.random() * 2,
+            }}
+          />
+        ))}
+      </div>
+
       {/* Main Content */}
       <div className="container-custom relative z-10 pt-20">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           {/* Left Column - Text Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -57,23 +84,26 @@ const HeroSection = () => {
               transition={{ delay: 0.3 }}
               className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-display font-bold leading-tight mb-6"
             >
-              Hi, I'm{' '}
-              <span className="gradient-text glow-text">Abu Bakar</span>
+              Hi, I'm <span className="gradient-text glow-text whitespace-nowrap">Abu Bakar</span>
               <br />
               <span className="text-foreground">CRM & Automation</span>
               <br />
               <span className="text-muted-foreground text-3xl sm:text-4xl lg:text-5xl">Engineer</span>
             </motion.h1>
 
-            {/* Description */}
+            {/* Punch Line */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-8"
+              className="text-lg sm:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-8"
             >
-              Transforming businesses through intelligent automation, AI-powered workflows, 
-              and scalable GoHighLevel solutions. Building the future of marketing automation.
+              <span className="text-primary font-semibold">"Automate the Chaos, Amplify the Growth"</span>
+              <br />
+              <span className="text-base">
+                Transforming businesses through GoHighLevel, n8n, Make, Zapier, 
+                and AI-powered workflows. Building intelligent automation that scales.
+              </span>
             </motion.p>
 
             {/* CTA Buttons */}
@@ -86,21 +116,23 @@ const HeroSection = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => scrollToSection('projects')}
+                onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
                 className="btn-primary flex items-center justify-center gap-2"
               >
                 View My Work
                 <ArrowRight className="w-5 h-5" />
               </motion.button>
-              <motion.button
+              <motion.a
+                href="https://calendar.app.google/YLibSR7nqF7VDFHY7"
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => scrollToSection('contact')}
                 className="btn-secondary flex items-center justify-center gap-2"
               >
-                <Download className="w-5 h-5" />
-                Download CV
-              </motion.button>
+                <Calendar className="w-5 h-5" />
+                Let's Talk
+              </motion.a>
             </motion.div>
           </motion.div>
 
@@ -116,15 +148,45 @@ const HeroSection = () => {
               {/* Glow Ring */}
               <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-primary via-accent to-primary opacity-20 blur-2xl animate-pulse-glow" />
               
-              {/* Decorative Ring */}
+              {/* Technology Ring - Rotating */}
               <motion.div
                 animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+                className="absolute -inset-16 sm:-inset-20"
+              >
+                {technologies.map((tech, index) => {
+                  const angle = (index / technologies.length) * 2 * Math.PI - Math.PI / 2;
+                  const radius = 150;
+                  const x = Math.cos(angle) * radius;
+                  const y = Math.sin(angle) * radius;
+                  
+                  return (
+                    <motion.div
+                      key={tech.name}
+                      className={`absolute w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br ${tech.color} flex items-center justify-center shadow-lg`}
+                      style={{
+                        left: `calc(50% + ${x}px - 24px)`,
+                        top: `calc(50% + ${y}px - 24px)`,
+                      }}
+                      animate={{ rotate: -360 }}
+                      transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+                      whileHover={{ scale: 1.2 }}
+                    >
+                      <span className="text-white text-xs sm:text-sm font-bold">{tech.abbr}</span>
+                    </motion.div>
+                  );
+                })}
+              </motion.div>
+
+              {/* Decorative Ring */}
+              <motion.div
+                animate={{ rotate: -360 }}
+                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
                 className="absolute -inset-8 rounded-full border-2 border-dashed border-primary/30"
               />
 
               {/* Profile Image */}
-              <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-primary/30 glow-cyan">
+              <div className="relative w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72 rounded-full overflow-hidden border-4 border-primary/30 glow-cyan">
                 <img
                   src={profilePhoto}
                   alt="Abu Bakar Nisar"
@@ -158,7 +220,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8 }}
-          className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-16 lg:mt-24"
+          className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-12 lg:mt-16"
         >
           {stats.map((stat, index) => (
             <motion.div
@@ -166,10 +228,15 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.9 + index * 0.1 }}
-              whileHover={{ scale: 1.05 }}
-              className="stat-card"
+              whileHover={{ scale: 1.05, y: -5 }}
+              className="stat-card group"
             >
-              <stat.icon className="w-8 h-8 text-primary mx-auto mb-3" />
+              <motion.div
+                animate={{ rotate: [0, 10, -10, 0] }}
+                transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
+              >
+                <stat.icon className="w-8 h-8 text-primary mx-auto mb-3 group-hover:scale-110 transition-transform" />
+              </motion.div>
               <div className="stat-value">{stat.value}</div>
               <div className="text-sm text-muted-foreground">{stat.label}</div>
             </motion.div>

@@ -1,6 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { ExternalLink, Github, X } from 'lucide-react';
+import { ExternalLink, Github, X, Play } from 'lucide-react';
 
 const projects = [
   {
@@ -10,6 +10,7 @@ const projects = [
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=60',
     technologies: ['GoHighLevel', 'Payment Integration', 'Email Automation', 'Course Delivery'],
     category: 'Sales Funnel',
+    hasCode: false,
   },
   {
     title: 'Fitness Agency Automation',
@@ -18,6 +19,7 @@ const projects = [
     image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&auto=format&fit=crop&q=60',
     technologies: ['GoHighLevel', 'Workflow Automation', 'CRM Setup', 'Analytics'],
     category: 'Agency Automation',
+    hasCode: false,
   },
   {
     title: 'Voice AI Calling System',
@@ -26,6 +28,7 @@ const projects = [
     image: 'https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?w=800&auto=format&fit=crop&q=60',
     technologies: ['VAPI', 'AI Integration', 'GoHighLevel', 'Webhooks'],
     category: 'AI Solution',
+    hasCode: false,
   },
   {
     title: 'Lead Nurture Engine',
@@ -34,6 +37,7 @@ const projects = [
     image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&auto=format&fit=crop&q=60',
     technologies: ['Email Marketing', 'SMS Campaigns', 'Lead Scoring', 'Automation'],
     category: 'Marketing Automation',
+    hasCode: false,
   },
   {
     title: 'Multi-Platform CRM Integration',
@@ -42,6 +46,7 @@ const projects = [
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=60',
     technologies: ['API Integration', 'Data Sync', 'Webhooks', 'Python'],
     category: 'System Integration',
+    hasCode: true,
   },
   {
     title: 'Appointment Booking System',
@@ -50,6 +55,7 @@ const projects = [
     image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&auto=format&fit=crop&q=60',
     technologies: ['Calendar Integration', 'SMS Automation', 'Workflows', 'Analytics'],
     category: 'Booking System',
+    hasCode: false,
   },
   {
     title: 'AI Chatbot Development',
@@ -58,6 +64,7 @@ const projects = [
     image: 'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=800&auto=format&fit=crop&q=60',
     technologies: ['ChatGPT', 'GoHighLevel', 'Lead Qualification', 'Chat Widgets'],
     category: 'AI Solution',
+    hasCode: false,
   },
   {
     title: 'Data Scraping Pipeline',
@@ -66,6 +73,7 @@ const projects = [
     image: 'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=800&auto=format&fit=crop&q=60',
     technologies: ['Python', 'Selenium', 'BeautifulSoup', 'Data Pipeline'],
     category: 'Development',
+    hasCode: true,
   },
 ];
 
@@ -82,7 +90,7 @@ const ProjectsSection = () => {
     : projects.filter(p => p.category === activeCategory);
 
   return (
-    <section id="projects" className="section-padding relative overflow-hidden">
+    <section id="projects" className="py-16 md:py-24 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/10 to-background" />
       <div className="orb orb-purple w-80 h-80 top-1/4 -right-40 opacity-10" />
@@ -93,7 +101,7 @@ const ProjectsSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-10"
         >
           <span className="text-primary font-medium mb-4 block">PORTFOLIO</span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mb-4">
@@ -109,37 +117,39 @@ const ProjectsSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-3 mb-12"
+          className="flex flex-wrap justify-center gap-3 mb-10"
         >
           {categories.map((category) => (
-            <button
+            <motion.button
               key={category}
               onClick={() => setActiveCategory(category)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                 activeCategory === category
-                  ? 'bg-primary text-primary-foreground'
+                  ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/30'
                   : 'bg-secondary/50 text-muted-foreground hover:bg-secondary hover:text-foreground'
               }`}
             >
               {category}
-            </button>
+            </motion.button>
           ))}
         </motion.div>
 
         {/* Projects Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
           {filteredProjects.map((project, index) => (
             <motion.div
               key={project.title}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -10 }}
+              whileHover={{ y: -10, scale: 1.02 }}
               className="project-card group cursor-pointer"
               onClick={() => setSelectedProject(project)}
             >
               {/* Image */}
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-44 overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.title}
@@ -153,20 +163,31 @@ const ProjectsSection = () => {
                     {project.category}
                   </span>
                 </div>
+
+                {/* Hover overlay */}
+                <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    whileHover={{ scale: 1 }}
+                    className="w-12 h-12 rounded-full bg-primary flex items-center justify-center"
+                  >
+                    <ExternalLink className="w-5 h-5 text-primary-foreground" />
+                  </motion.div>
+                </div>
               </div>
 
               {/* Content */}
-              <div className="p-5">
+              <div className="p-4">
                 <p className="text-xs text-primary mb-1">{project.client}</p>
                 <h3 className="font-display font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
                   {project.title}
                 </h3>
-                <p className="text-sm text-muted-foreground line-clamp-2 mb-4">
+                <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
                   {project.description}
                 </p>
 
                 {/* Technologies */}
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5">
                   {project.technologies.slice(0, 2).map((tech) => (
                     <span
                       key={tech}
@@ -206,7 +227,7 @@ const ProjectsSection = () => {
                 <img
                   src={selectedProject.image}
                   alt={selectedProject.title}
-                  className="w-full h-64 object-cover"
+                  className="w-full h-56 object-cover"
                 />
                 <button
                   onClick={() => setSelectedProject(null)}
@@ -238,17 +259,19 @@ const ProjectsSection = () => {
                     whileTap={{ scale: 0.95 }}
                     className="btn-primary flex items-center gap-2"
                   >
-                    <ExternalLink className="w-4 h-4" />
-                    View Project
+                    <Play className="w-4 h-4" />
+                    Walkthrough Project
                   </motion.button>
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="btn-secondary flex items-center gap-2"
-                  >
-                    <Github className="w-4 h-4" />
-                    View Code
-                  </motion.button>
+                  {selectedProject.hasCode && (
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="btn-secondary flex items-center gap-2"
+                    >
+                      <Github className="w-4 h-4" />
+                      View Code
+                    </motion.button>
+                  )}
                 </div>
               </div>
             </motion.div>

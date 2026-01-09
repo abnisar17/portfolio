@@ -1,13 +1,13 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Award, Calendar, Briefcase, Download } from 'lucide-react';
+import { Award, Calendar, Briefcase } from 'lucide-react';
 
 const achievements = [
   {
     icon: Briefcase,
     title: '2+ Years Experience',
-    description: 'Specialized in GoHighLevel & Automation',
+    description: 'Specialized in GoHighLevel, Make, n8n & Automation',
   },
   {
     icon: Award,
@@ -26,7 +26,7 @@ const AboutSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" className="section-padding relative overflow-hidden">
+    <section id="about" className="py-16 md:py-24 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/20 to-background" />
       <div className="orb orb-purple w-72 h-72 top-0 right-0 opacity-10" />
@@ -37,7 +37,7 @@ const AboutSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <span className="text-primary font-medium mb-4 block">ABOUT ME</span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mb-4">
@@ -49,18 +49,18 @@ const AboutSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left - About Text */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="glass-card p-8 lg:p-10">
-              <h3 className="text-2xl font-display font-bold mb-6">
+            <div className="glass-card p-6 lg:p-8">
+              <h3 className="text-2xl font-display font-bold mb-4">
                 Professional Summary
               </h3>
-              <div className="space-y-4 text-muted-foreground">
+              <div className="space-y-3 text-muted-foreground text-sm sm:text-base">
                 <p>
                   Results-driven CRM and Automation Engineer with nearly 2 years of specialized 
                   experience in GoHighLevel platform development, marketing automation, and 
@@ -77,15 +77,6 @@ const AboutSection = () => {
                   and drive measurable business growth.
                 </p>
               </div>
-
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="btn-primary mt-8 flex items-center gap-2"
-              >
-                <Download className="w-5 h-5" />
-                Download My CV
-              </motion.button>
             </div>
           </motion.div>
 
@@ -94,7 +85,7 @@ const AboutSection = () => {
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="space-y-6"
+            className="space-y-4"
           >
             {achievements.map((item, index) => (
               <motion.div
@@ -103,7 +94,7 @@ const AboutSection = () => {
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
                 whileHover={{ scale: 1.02, x: 10 }}
-                className="glass-card p-6 flex items-start gap-4"
+                className="glass-card p-5 flex items-start gap-4"
               >
                 <div className="p-3 rounded-xl bg-primary/10 text-primary">
                   <item.icon className="w-6 h-6" />
@@ -120,29 +111,29 @@ const AboutSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.8 }}
-              className="glass-card p-6"
+              className="glass-card p-5"
             >
               <h4 className="font-display font-semibold text-lg mb-4">Experience Timeline</h4>
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <div className="flex items-start gap-4">
-                  <div className="w-3 h-3 rounded-full bg-primary mt-2" />
+                  <div className="w-3 h-3 rounded-full bg-primary mt-2 flex-shrink-0" />
                   <div>
-                    <p className="font-medium">CRM & Automation Engineer</p>
-                    <p className="text-sm text-muted-foreground">360SynergyTech • March 2025 - Present</p>
+                    <p className="font-medium text-sm">CRM & Automation Engineer</p>
+                    <p className="text-xs text-muted-foreground">360SynergyTech • March 2025 - Present</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
-                  <div className="w-3 h-3 rounded-full bg-accent mt-2" />
+                  <div className="w-3 h-3 rounded-full bg-accent mt-2 flex-shrink-0" />
                   <div>
-                    <p className="font-medium">Primary GHL Technician</p>
-                    <p className="text-sm text-muted-foreground">A2B Solutions • Ongoing - 8+ Months</p>
+                    <p className="font-medium text-sm">Primary GHL Technician</p>
+                    <p className="text-xs text-muted-foreground">A2B Solutions • Ongoing - 8+ Months</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
-                  <div className="w-3 h-3 rounded-full bg-glow-orange mt-2" />
+                  <div className="w-3 h-3 rounded-full bg-glow-orange mt-2 flex-shrink-0" />
                   <div>
-                    <p className="font-medium">Freelance GHL & Automation</p>
-                    <p className="text-sm text-muted-foreground">Fiverr • Dec 2023 - Jan 2025</p>
+                    <p className="font-medium text-sm">Freelance GHL & Automation</p>
+                    <p className="text-xs text-muted-foreground">Fiverr • Dec 2023 - Jan 2025</p>
                   </div>
                 </div>
               </div>

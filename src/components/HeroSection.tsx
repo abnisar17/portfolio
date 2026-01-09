@@ -22,7 +22,7 @@ const HeroSection = () => {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center overflow-hidden animated-gradient-bg"
+      className="relative min-h-screen flex items-center overflow-hidden animated-gradient-bg pt-20"
     >
       {/* Background Elements */}
       <div className="absolute inset-0 grid-pattern opacity-20" />

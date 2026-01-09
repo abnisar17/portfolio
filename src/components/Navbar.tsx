@@ -53,14 +53,14 @@ const Navbar = () => {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? 'bg-background/80 backdrop-blur-xl border-b border-border/50'
-            : 'bg-transparent'
+            ? 'bg-background/90 backdrop-blur-2xl border-b border-primary/10 shadow-lg shadow-primary/5'
+            : 'bg-gradient-to-b from-background/80 to-transparent'
         }`}
       >
         <div className="container-custom">
-          <div className="flex items-center justify-between h-16 md:h-20">
+          <div className="flex items-center justify-between h-18 md:h-20">
             {/* Logo */}
             <motion.a
               href="#home"
@@ -68,15 +68,23 @@ const Navbar = () => {
                 e.preventDefault();
                 scrollToSection('#home');
               }}
-              className="flex items-center gap-2 text-xl font-display font-bold"
-              whileHover={{ scale: 1.05 }}
+              className="flex items-center gap-1 group"
+              whileHover={{ scale: 1.02 }}
             >
-              <span className="gradient-text">Abu</span>
-              <span className="text-foreground">Bakar</span>
+              <div className="relative">
+                <span className="text-2xl font-display font-bold gradient-text">Abu</span>
+                <span className="text-2xl font-display font-bold text-foreground ml-1">Bakar</span>
+                <motion.div 
+                  className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-primary to-accent rounded-full"
+                  initial={{ width: 0 }}
+                  whileHover={{ width: '100%' }}
+                  transition={{ duration: 0.3 }}
+                />
+              </div>
             </motion.a>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-1">
+            <div className="hidden md:flex items-center bg-secondary/30 backdrop-blur-lg rounded-full px-2 py-1.5 border border-border/30">
               {navItems.map((item) => (
                 <button
                   key={item.name}
@@ -89,14 +97,17 @@ const Navbar = () => {
             </div>
 
             {/* CTA Button Desktop */}
-            <motion.button
+            <motion.a
+              href="https://calendar.app.google/YLibSR7nqF7VDFHY7"
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => scrollToSection('#contact')}
-              className="hidden md:block btn-primary text-sm px-6 py-2"
+              className="hidden md:flex items-center gap-2 bg-gradient-to-r from-primary to-accent text-primary-foreground text-sm px-6 py-2.5 rounded-full font-semibold shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all"
             >
+              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
               Let's Talk
-            </motion.button>
+            </motion.a>
 
             {/* Mobile Menu Toggle */}
             <button
@@ -144,15 +155,18 @@ const Navbar = () => {
                   {item.name}
                 </motion.button>
               ))}
-              <motion.button
+              <motion.a
+                href="https://calendar.app.google/YLibSR7nqF7VDFHY7"
+                target="_blank"
+                rel="noopener noreferrer"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: navItems.length * 0.1 }}
-                onClick={() => scrollToSection('#contact')}
-                className="btn-primary mt-4 text-center"
+                className="btn-primary mt-4 text-center flex items-center justify-center gap-2"
               >
+                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
                 Let's Talk
-              </motion.button>
+              </motion.a>
             </motion.div>
           </motion.div>
         )}

@@ -60,7 +60,7 @@ const ServicesSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="services" className="py-16 md:py-24 relative overflow-hidden">
+    <section id="services" className="py-12 md:py-16 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/10 to-background" />
       <div className="orb orb-orange w-80 h-80 -top-40 -right-40 opacity-10" />
@@ -72,10 +72,15 @@ const ServicesSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-10"
         >
-          <span className="text-primary font-medium mb-4 block">WHAT I OFFER</span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mb-4">
+          <motion.span 
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary font-medium text-sm mb-4"
+            whileHover={{ scale: 1.05 }}
+          >
+            WHAT I OFFER
+          </motion.span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mb-3">
             My <span className="gradient-text">Services</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -130,7 +135,7 @@ const ServicesSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-center mt-12"
+          className="text-center mt-10"
         >
           <p className="text-muted-foreground mb-4">
             Need something custom? Let's discuss your specific requirements.

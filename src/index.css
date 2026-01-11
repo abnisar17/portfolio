@@ -2,89 +2,89 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Abu Bakar Nisar Portfolio - Dark Futuristic Theme with Cyan Accents */
+/* Abu Bakar Nisar Portfolio - Fresh Mint Green Theme */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 @layer base {
   :root {
-    /* Dark futuristic theme */
-    --background: 222 47% 6%;
-    --foreground: 210 40% 98%;
+    /* Dark elegant theme with green accents */
+    --background: 160 20% 6%;
+    --foreground: 150 30% 96%;
 
-    --card: 222 47% 8%;
-    --card-foreground: 210 40% 98%;
+    --card: 160 25% 8%;
+    --card-foreground: 150 30% 96%;
 
-    --popover: 222 47% 8%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 160 25% 8%;
+    --popover-foreground: 150 30% 96%;
 
-    /* Cyan/Teal as primary */
-    --primary: 187 85% 53%;
-    --primary-foreground: 222 47% 6%;
+    /* Fresh Mint Green as primary */
+    --primary: 156 72% 55%;
+    --primary-foreground: 160 20% 6%;
 
-    /* Deep blue as secondary */
-    --secondary: 222 47% 12%;
-    --secondary-foreground: 210 40% 98%;
+    /* Deep forest secondary */
+    --secondary: 160 25% 12%;
+    --secondary-foreground: 150 30% 96%;
 
-    --muted: 222 30% 15%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 160 20% 15%;
+    --muted-foreground: 150 15% 60%;
 
-    /* Purple accent */
-    --accent: 280 70% 60%;
-    --accent-foreground: 210 40% 98%;
+    /* Warm coral accent for contrast */
+    --accent: 16 85% 65%;
+    --accent-foreground: 150 30% 96%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 150 30% 96%;
 
-    --border: 222 30% 18%;
-    --input: 222 30% 18%;
-    --ring: 187 85% 53%;
+    --border: 160 20% 18%;
+    --input: 160 20% 18%;
+    --ring: 156 72% 55%;
 
     --radius: 0.75rem;
 
     /* Custom colors for the portfolio */
-    --glow-cyan: 187 85% 53%;
-    --glow-purple: 280 70% 60%;
-    --glow-orange: 25 95% 60%;
-    --glass: 222 47% 8%;
-    --glass-border: 222 30% 25%;
+    --glow-cyan: 156 72% 55%;
+    --glow-purple: 142 70% 45%;
+    --glow-orange: 16 85% 65%;
+    --glass: 160 25% 8%;
+    --glass-border: 160 20% 25%;
 
     /* Gradient definitions */
-    --gradient-primary: linear-gradient(135deg, hsl(187 85% 53%) 0%, hsl(220 85% 55%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(280 70% 60%) 0%, hsl(187 85% 53%) 100%);
-    --gradient-warm: linear-gradient(135deg, hsl(25 95% 60%) 0%, hsl(340 80% 55%) 100%);
-    --gradient-dark: linear-gradient(180deg, hsl(222 47% 6%) 0%, hsl(222 47% 3%) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(156 72% 55%) 0%, hsl(142 70% 45%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(16 85% 65%) 0%, hsl(156 72% 55%) 100%);
+    --gradient-warm: linear-gradient(135deg, hsl(16 85% 65%) 0%, hsl(340 75% 55%) 100%);
+    --gradient-dark: linear-gradient(180deg, hsl(160 20% 6%) 0%, hsl(160 25% 3%) 100%);
 
-    --sidebar-background: 222 47% 8%;
-    --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 187 85% 53%;
-    --sidebar-primary-foreground: 222 47% 6%;
-    --sidebar-accent: 222 47% 12%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 222 30% 18%;
-    --sidebar-ring: 187 85% 53%;
+    --sidebar-background: 160 25% 8%;
+    --sidebar-foreground: 150 30% 96%;
+    --sidebar-primary: 156 72% 55%;
+    --sidebar-primary-foreground: 160 20% 6%;
+    --sidebar-accent: 160 25% 12%;
+    --sidebar-accent-foreground: 150 30% 96%;
+    --sidebar-border: 160 20% 18%;
+    --sidebar-ring: 156 72% 55%;
   }
 
   .dark {
-    --background: 222 47% 6%;
-    --foreground: 210 40% 98%;
-    --card: 222 47% 8%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222 47% 8%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 187 85% 53%;
-    --primary-foreground: 222 47% 6%;
-    --secondary: 222 47% 12%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 222 30% 15%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 280 70% 60%;
-    --accent-foreground: 210 40% 98%;
+    --background: 160 20% 6%;
+    --foreground: 150 30% 96%;
+    --card: 160 25% 8%;
+    --card-foreground: 150 30% 96%;
+    --popover: 160 25% 8%;
+    --popover-foreground: 150 30% 96%;
+    --primary: 156 72% 55%;
+    --primary-foreground: 160 20% 6%;
+    --secondary: 160 25% 12%;
+    --secondary-foreground: 150 30% 96%;
+    --muted: 160 20% 15%;
+    --muted-foreground: 150 15% 60%;
+    --accent: 16 85% 65%;
+    --accent-foreground: 150 30% 96%;
     --destructive: 0 62% 30%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 222 30% 18%;
-    --input: 222 30% 18%;
-    --ring: 187 85% 53%;
+    --destructive-foreground: 150 30% 96%;
+    --border: 160 20% 18%;
+    --input: 160 20% 18%;
+    --ring: 156 72% 55%;
   }
 }
 
@@ -165,10 +165,10 @@
   .animated-gradient-bg {
     background: linear-gradient(
       -45deg,
-      hsl(222 47% 6%),
-      hsl(222 47% 10%),
-      hsl(230 50% 8%),
-      hsl(222 47% 6%)
+      hsl(160 20% 6%),
+      hsl(160 25% 10%),
+      hsl(156 30% 8%),
+      hsl(160 20% 6%)
     );
     background-size: 400% 400%;
     animation: gradientShift 15s ease infinite;

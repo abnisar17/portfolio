@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Zap, Sparkles, Calendar, TrendingUp, Users, Clock } from 'lucide-react';
+import { ArrowRight, Zap, Sparkles, Calendar, TrendingUp, Users, Clock, Bot, Workflow } from 'lucide-react';
 import profilePhoto from '@/assets/profile-photo.png';
+import aiAutomationHero from '@/assets/ai-automation-hero.jpg';
+import AutomationFlowVisual from './AutomationFlowVisual';
 
 const stats = [
   { value: '200+', label: 'CRM Accounts Managed', icon: Users },
@@ -22,8 +24,18 @@ const HeroSection = () => {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center overflow-hidden animated-gradient-bg pt-20"
+      className="relative min-h-screen flex items-center overflow-hidden pt-20"
     >
+      {/* AI Automation Hero Background */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src={aiAutomationHero} 
+          alt="AI Automation Background" 
+          className="w-full h-full object-cover opacity-30"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/70 to-background" />
+      </div>
+      
       {/* Background Elements */}
       <div className="absolute inset-0 grid-pattern opacity-20" />
       
@@ -249,6 +261,22 @@ const HeroSection = () => {
               </div>
             </motion.div>
           ))}
+        </motion.div>
+
+        {/* Automation Flow Visual */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.0 }}
+          className="mt-8"
+        >
+          <div className="glass-card p-4 rounded-2xl">
+            <div className="flex items-center gap-2 mb-2">
+              <Workflow className="w-4 h-4 text-primary" />
+              <span className="text-sm font-medium text-muted-foreground">Live Automation Flow</span>
+            </div>
+            <AutomationFlowVisual />
+          </div>
         </motion.div>
       </div>
 

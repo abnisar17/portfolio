@@ -8,14 +8,14 @@ const stats = [
   { value: '100%', label: 'Success Rate', icon: TrendingUp },
 ];
 
-// Technology logos for the rotating ring
+// Technology logos for the rotating ring - updated to match green theme
 const technologies = [
-  { name: 'GoHighLevel', abbr: 'GHL', color: 'from-cyan-400 to-blue-500' },
-  { name: 'Make', abbr: 'Make', color: 'from-purple-400 to-purple-600' },
-  { name: 'Zapier', abbr: 'Zap', color: 'from-orange-400 to-orange-600' },
-  { name: 'n8n', abbr: 'n8n', color: 'from-red-400 to-pink-500' },
-  { name: 'Python', abbr: 'Py', color: 'from-yellow-400 to-yellow-600' },
-  { name: 'VAPI', abbr: 'VAPI', color: 'from-green-400 to-emerald-500' },
+  { name: 'GoHighLevel', abbr: 'GHL', color: 'from-emerald-400 to-teal-500' },
+  { name: 'Make', abbr: 'Make', color: 'from-teal-400 to-cyan-500' },
+  { name: 'Zapier', abbr: 'Zap', color: 'from-amber-400 to-orange-500' },
+  { name: 'n8n', abbr: 'n8n', color: 'from-rose-400 to-pink-500' },
+  { name: 'Python', abbr: 'Py', color: 'from-lime-400 to-green-500' },
+  { name: 'VAPI', abbr: 'VAPI', color: 'from-green-400 to-emerald-600' },
 ];
 
 const HeroSection = () => {
@@ -27,10 +27,11 @@ const HeroSection = () => {
       {/* Background Elements */}
       <div className="absolute inset-0 grid-pattern opacity-20" />
       
-      {/* Floating Orbs */}
-      <div className="orb orb-cyan w-[500px] h-[500px] -top-64 -right-64 animate-float" />
-      <div className="orb orb-purple w-96 h-96 -bottom-48 -left-48 animate-float" style={{ animationDelay: '2s' }} />
-      <div className="orb orb-orange w-72 h-72 top-1/3 right-1/3 animate-float opacity-10" style={{ animationDelay: '4s' }} />
+      {/* Floating Orbs - Enhanced with green theme */}
+      <div className="absolute w-[600px] h-[600px] -top-64 -right-64 rounded-full bg-gradient-to-br from-emerald-500/30 via-teal-400/20 to-transparent blur-3xl animate-float" />
+      <div className="absolute w-[500px] h-[500px] -bottom-48 -left-48 rounded-full bg-gradient-to-tr from-green-500/25 via-primary/20 to-transparent blur-3xl animate-float" style={{ animationDelay: '2s' }} />
+      <div className="absolute w-96 h-96 top-1/4 right-1/4 rounded-full bg-gradient-to-br from-lime-400/15 via-emerald-400/10 to-transparent blur-2xl animate-float" style={{ animationDelay: '4s' }} />
+      <div className="absolute w-72 h-72 bottom-1/4 left-1/3 rounded-full bg-gradient-to-tl from-teal-400/20 via-cyan-400/10 to-transparent blur-2xl animate-float" style={{ animationDelay: '3s' }} />
 
       {/* Animated particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -101,7 +102,7 @@ const HeroSection = () => {
               </p>
             </motion.div>
 
-            {/* CTA Buttons */}
+            {/* CTA Buttons - Enhanced */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -109,24 +110,24 @@ const HeroSection = () => {
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
             >
               <motion.button
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.05, boxShadow: '0 0 40px rgba(52, 211, 153, 0.5)' }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-                className="btn-primary flex items-center justify-center gap-2"
+                className="btn-primary flex items-center justify-center gap-2 group"
               >
-                View My Work
-                <ArrowRight className="w-5 h-5" />
+                <span>View My Work</span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </motion.button>
               <motion.a
                 href="https://calendar.app.google/YLibSR7nqF7VDFHY7"
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(52, 211, 153, 0.3)' }}
                 whileTap={{ scale: 0.95 }}
-                className="btn-secondary flex items-center justify-center gap-2"
+                className="btn-secondary flex items-center justify-center gap-2 group"
               >
-                <Calendar className="w-5 h-5" />
-                Let's Talk
+                <Calendar className="w-5 h-5 group-hover:rotate-12 transition-transform" />
+                <span>Let's Talk</span>
               </motion.a>
             </motion.div>
           </motion.div>
@@ -140,8 +141,9 @@ const HeroSection = () => {
           >
             {/* Profile Image Container */}
             <div className="relative">
-              {/* Outer Glow */}
-              <div className="absolute -inset-8 rounded-full bg-gradient-to-r from-primary via-accent to-primary opacity-20 blur-3xl animate-pulse-glow" />
+              {/* Outer Glow - Enhanced */}
+              <div className="absolute -inset-12 rounded-full bg-gradient-to-r from-emerald-400 via-teal-400 to-green-400 opacity-25 blur-3xl animate-pulse-glow" />
+              <div className="absolute -inset-6 rounded-full bg-gradient-to-br from-primary/30 to-emerald-500/20 blur-2xl animate-pulse" />
               
               {/* Technology Ring - Rotating */}
               <motion.div
@@ -186,15 +188,16 @@ const HeroSection = () => {
                 style={{ width: '340px', height: '340px', left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}
               />
 
-              {/* Profile Image */}
-              <div className="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-primary/40 glow-cyan">
+              {/* Profile Image - Enhanced border */}
+              <div className="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-emerald-400/50 shadow-2xl shadow-emerald-500/30">
+                <div className="absolute inset-0 rounded-full border-4 border-primary/30 animate-pulse" />
                 <img
                   src={profilePhoto}
                   alt="Abu Bakar Nisar"
                   className="w-full h-full object-cover object-top"
                 />
                 {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/30 via-transparent to-emerald-400/10" />
               </div>
 
               {/* Floating Tech Icons */}

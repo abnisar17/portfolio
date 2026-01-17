@@ -8,8 +8,12 @@ import {
   Database, 
   Globe,
   Mail,
-  Phone
+  Phone,
+  Sparkles,
+  BrainCircuit
 } from 'lucide-react';
+import aiBrain from '@/assets/ai-brain.png';
+import automationGears from '@/assets/automation-gears.png';
 
 const skills = [
   {
@@ -72,6 +76,22 @@ const SkillsSection = () => {
       <div className="absolute inset-0 bg-background" />
       <div className="orb orb-cyan w-96 h-96 -top-48 -left-48 opacity-10" />
       <div className="orb orb-orange w-64 h-64 bottom-0 right-0 opacity-10" />
+      
+      {/* AI Visual Elements */}
+      <motion.div 
+        className="absolute top-20 right-10 w-32 h-32 opacity-20 hidden lg:block"
+        animate={{ rotate: 360, scale: [1, 1.1, 1] }}
+        transition={{ rotate: { duration: 30, repeat: Infinity, ease: 'linear' }, scale: { duration: 4, repeat: Infinity } }}
+      >
+        <img src={aiBrain} alt="AI Brain" className="w-full h-full object-contain" />
+      </motion.div>
+      <motion.div 
+        className="absolute bottom-20 left-10 w-28 h-28 opacity-20 hidden lg:block"
+        animate={{ rotate: -360 }}
+        transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
+      >
+        <img src={automationGears} alt="Automation" className="w-full h-full object-contain" />
+      </motion.div>
 
       <div className="container-custom relative z-10" ref={ref}>
         {/* Section Header */}
@@ -85,13 +105,16 @@ const SkillsSection = () => {
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary font-medium text-sm mb-4"
             whileHover={{ scale: 1.05 }}
           >
+            <BrainCircuit className="w-4 h-4" />
             MY EXPERTISE
           </motion.span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mb-3">
             Technical <span className="gradient-text">Skills</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto flex items-center justify-center gap-2">
+            <Sparkles className="w-4 h-4 text-primary" />
             Comprehensive toolkit for building end-to-end automation solutions
+            <Sparkles className="w-4 h-4 text-primary" />
           </p>
         </motion.div>
 
@@ -100,16 +123,27 @@ const SkillsSection = () => {
           {skills.map((skill, index) => (
             <motion.div
               key={skill.category}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              initial={{ opacity: 0, y: 30, rotateX: 15 }}
+              animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -10 }}
-              className="skill-card group"
+              whileHover={{ y: -10, scale: 1.03 }}
+              className="skill-card group relative"
             >
+              {/* Hover Glow Effect */}
+              <motion.div
+                className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"
+              />
+              
               {/* Icon */}
-              <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${skill.color} p-3 mb-4 group-hover:scale-110 transition-transform duration-300`}>
+              <motion.div 
+                className={`w-14 h-14 rounded-xl bg-gradient-to-br ${skill.color} p-3 mb-4 group-hover:scale-110 transition-transform duration-300 relative`}
+                whileHover={{ rotate: [0, -10, 10, 0] }}
+                transition={{ duration: 0.5 }}
+              >
                 <skill.icon className="w-full h-full text-white" />
-              </div>
+                {/* Icon Glow */}
+                <div className={`absolute inset-0 rounded-xl bg-gradient-to-br ${skill.color} opacity-0 group-hover:opacity-50 blur-lg transition-opacity duration-300`} />
+              </motion.div>
 
               {/* Category Title */}
               <h3 className="font-display font-semibold text-lg mb-3 group-hover:text-primary transition-colors">
@@ -118,11 +152,21 @@ const SkillsSection = () => {
 
               {/* Skills List */}
               <ul className="space-y-2">
-                {skill.items.map((item) => (
-                  <li key={item} className="text-sm text-muted-foreground flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                {skill.items.map((item, itemIndex) => (
+                  <motion.li 
+                    key={item} 
+                    className="text-sm text-muted-foreground flex items-center gap-2"
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={isInView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ delay: index * 0.1 + itemIndex * 0.05 + 0.3 }}
+                  >
+                    <motion.div 
+                      className="w-1.5 h-1.5 rounded-full bg-primary"
+                      animate={{ scale: [1, 1.5, 1] }}
+                      transition={{ duration: 2, repeat: Infinity, delay: itemIndex * 0.2 }}
+                    />
                     {item}
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
             </motion.div>
